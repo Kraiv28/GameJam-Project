@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -9,17 +9,42 @@ public class PlayerController : MonoBehaviour
     [Header("Player setting")]
     [SerializeField] float speed;
     [SerializeField] float jumpingPower;
+    [SerializeField] Animator anim;
+
+    [Header("Sprite Settings")]
+    [SerializeField] SpriteRenderer sprite; // ลาก Sprite Renderer มาใส่ในช่องนี้
 
     [Header("Grounding")]
     [SerializeField] LayerMask groundLayer;
     [SerializeField] Transform groundCheck;
+
+    bool facingRight = true;
 
     private float horizontal;
 
     private void FixedUpdate()
     {
         rp.linearVelocity = new Vector2(horizontal * speed, rp.linearVelocity.y);
+
+        // --- ใช้ SetBool เพื่อเช็คว่ากำลังเดินอยู่หรือไม่ ---
+        if (anim != null)
+        {
+            // ถ้า horizontal ไม่เป็น 0 แสดงว่ามีการกดปุ่มเดิน
+            bool walking = horizontal != 0;
+            anim.SetBool("isWalking", walking);
+        }
+        // -------------------------------------------
+
+        if (horizontal > 0 && !facingRight)
+        {
+            Flip();
+        }
+        else if (horizontal < 0 && facingRight)
+        {
+            Flip();
+        }
     }
+
 
     #region PLAYER_CONTROLS
 
@@ -39,5 +64,18 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion
+
+    void Flip()
+    {
+        facingRight = !facingRight;
+
+        if (sprite != null)
+        {
+            // ถ้า facingRight เป็น true (หันขวา) -> flipX ต้องเป็น false
+            // ถ้า facingRight เป็น false (หันซ้าย) -> flipX ต้องเป็น true
+            sprite.flipX = !facingRight;
+        }
+    }
+
 
 }

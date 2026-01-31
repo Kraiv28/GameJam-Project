@@ -10,5 +10,17 @@ public class DialogueSystem : ScriptableObject
     public AudioClip typinSound;
     public float voicePitch = 1f;
     public bool[] autoProgressLines;
+    public bool[] endDialogueLines;
     public float autoProgressDisplay = 1.5f;
+
+    public DialogueChoice[] choices; 
+}
+
+[System.Serializable]
+
+public class DialogueChoice
+{
+    public int dailogueIndex;
+    public string[] choices;
+    public int[] nexDialogueIndexs;
 }

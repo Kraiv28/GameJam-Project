@@ -16,9 +16,19 @@ MonoBehaviour:
   portrait: {fileID: 2906393558144355940, guid: b447af0ef03a1d946bd483612d2a052b, type: 3}
   dialogueLines:
   - HI
-  - I AM BOX
+  - I AM A BOX
+  - I AM A BOXXxxxx.....
+  - box....
+  - BOX!!!!
   typingSpeed: 0.05
-  typinSound: {fileID: 0}
+  typinSound: {fileID: 8300000, guid: 8062e3d30cd512e4aa18b85acd66faa3, type: 3}
   voicePitch: 1
-  autoProgressLines: 
+  autoProgressLines: 0000000000
+  endDialogueLines: 0000010001
   autoProgressDisplay: 1.5
+  choices:
+  - dailogueIndex: 1
+    choices:
+    - Who are you!?
+    - .....Nope
+    nexDialogueIndexs: 0200000003000000
